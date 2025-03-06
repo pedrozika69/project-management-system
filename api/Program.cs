@@ -26,6 +26,17 @@ app.MapGet("/", () =>
 })
 .WithName("GetHome");
 
+// new endpoint
+
+// /{price}/{tax} --> variable
+// /100.34/0.15 
+// receive by get price, tax
+// {
+//     price: 0.0,
+//     tax: '0%',
+//     final: 0.0 + tax 
+// }
+
 app.MapGet("/weatherforecast", () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
