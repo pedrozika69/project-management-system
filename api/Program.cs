@@ -26,16 +26,15 @@ app.MapGet("/", () =>
 })
 .WithName("GetHome");
 
-// new endpoint
 
-// /{price}/{tax} --> variable
-// /100.34/0.15 
-// receive by get price, tax
-// {
-//     price: 0.0,
-//     tax: '0%',
-//     final: 0.0 + tax 
-// }
+app.MapGet("/{price}/{tax}", (double price, double tax) =>
+{
+    var final = price + (price * tax);
+    return new { price, tax, final };
+})
+.WithName("GetTax");
+
+
 
 app.MapGet("/weatherforecast", () =>
 {
