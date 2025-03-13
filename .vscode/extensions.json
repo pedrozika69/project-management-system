@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "qwtel.sqlite-viewer",
-        "humao.rest-client"
+        "humao.rest-client",
+        "svelte.svelte-vscode"
     ]
 }
