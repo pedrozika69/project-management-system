@@ -87,7 +87,7 @@ This guide provides a quick overview of the main commands, principles, and tips 
 - SvelteKit is the official framework for building Svelte apps.
 - Create a new SvelteKit project:
   ```bash
-  npm create svelte@latest project-name
+  npm create vite@latest svelte-app -- --template svelte-ts
   cd project-name
   npm install
   ```
