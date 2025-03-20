@@ -9,6 +9,19 @@ using API.Data;
 // Builder
 var builder = WebApplication.CreateBuilder(args);
 
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin() 
+                   .AllowAnyMethod() 
+                   .AllowAnyHeader(); 
+        });
+});
+//
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); // string
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connectionString));
@@ -56,6 +69,12 @@ builder.Services.AddSwaggerGen(); // Easy Way to do the API documentation
 
 // stage 2
 var app = builder.Build();
+
+// CORS only in development mode
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors("AllowAllOrigins");
+}
 
 using (var scope = app.Services.CreateScope())
 {

@@ -12,9 +12,9 @@
 
   onMount(() => {
     if (isAuthenticated) {
-      document.body.classList.add("bg-primary");
+      document.body.classList.add("sb-nav-fixed");
       return () => {
-        document.body.classList.remove("bg-primary");
+        document.body.classList.remove("sb-nav-fixed");
       };
     }
     return () => { };

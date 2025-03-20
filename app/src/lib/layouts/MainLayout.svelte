@@ -1,8 +1,10 @@
 <script>
   import Footer from "$lib/components/Footer.svelte";
+  import Header from "$lib/components/Header.svelte";
   import Sidebar from "$lib/components/Sidebar.svelte";
 </script>
 
+<Header />
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <Sidebar />
