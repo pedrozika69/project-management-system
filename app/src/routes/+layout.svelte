@@ -8,6 +8,8 @@
   import "./../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
   import { onMount } from "svelte";
 
+  import { Toaster } from 'svelte-french-toast';
+
   const isAuthenticated = get(authStore).isAuthenticated;
 
   onMount(() => {
@@ -20,6 +22,8 @@
     return () => { };
   });
 </script>
+
+<Toaster />
 
 {#if isAuthenticated}
   <MainLayout>

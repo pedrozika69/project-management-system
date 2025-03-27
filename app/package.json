@@ -1,5 +1,5 @@
 {
-	"name": "app2",
+	"name": "app",
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
@@ -28,6 +28,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.7.2",
 		"bootstrap": "^5.3.3",
 		"svelte-fa": "^4.0.3",
+		"svelte-french-toast": "^1.2.0",
 		"svelte-routing": "^2.13.0"
 	}
 }

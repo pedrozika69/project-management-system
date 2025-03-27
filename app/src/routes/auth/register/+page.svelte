@@ -1,6 +1,9 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { authStore, setAuthState } from "$lib/stores/authStore";
+  import { faL } from "@fortawesome/free-solid-svg-icons";
+  import { onMount } from "svelte";
+  import toast from "svelte-french-toast";
 
   let firstName = "";
   let lastName = "";
@@ -9,12 +12,16 @@
   let passwordConfirm = "";
   let errorMessage = "";
 
+  let isLoading = false;
+
   const handleRegister = async () => {
     errorMessage = "";
+    isLoading = true;
 
-    if(password != passwordConfirm){
-        errorMessage = 'Passwords do not match';
-        return;
+    if (password != passwordConfirm) {
+      errorMessage = "Passwords do not match";
+      isLoading = false;
+      return;
     }
 
     try {
@@ -30,16 +37,25 @@
       );
 
       if (respose.ok) {
-        goto("/auth/login");
+        toast.success("It works!", { duration: 3000 });
+        setTimeout(() => goto("/auth/login"), 3000);
       } else {
         // this will happen in a good environment (that message will be dispatched by our API)
-        const errorData = await respose.json();
-        errorMessage = errorData.message || "Registration failed, Please try again";
+        const errorData: [] = await respose.json();
+        errorData.forEach((e: { code: string; description: string }) => {
+          toast.error(e.description, { duration: 5000, position: "top-right" });
+        });
       }
     } catch (error) {
       // this happen becasue something wronh with API or Network connection
       errorMessage = "An error occured. Please try again later.";
       console.error("Login error: ", error);
+      toast.error(
+        error?.message || "An error occured. Please try again later.",
+        { duration: 5000 }
+      );
+    } finally {
+      isLoading = false;
     }
   };
 </script>
@@ -118,9 +134,14 @@
         </div>
         <div class="mt-4 mb-0">
           <div class="d-grid">
-            <button class="btn btn-primary btn-block" type="submit"
-              >Create Account</button
-            >
+            <button class="btn btn-primary btn-block" type="submit">
+              {#if isLoading}
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              {/if}
+              Create Account
+            </button>
           </div>
         </div>
       </form>
