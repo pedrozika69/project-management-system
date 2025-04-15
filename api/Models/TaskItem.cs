@@ -20,7 +20,8 @@ namespace API.Models
         public TaskStatus Status {get; set; }
 
         public int ProjectId { get; set; }
-        public Project Project { get; set; } = default!;
+        public Project? Project { get; set; }
+
 
     }
 }
