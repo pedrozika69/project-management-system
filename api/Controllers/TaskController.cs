@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization; // Add this
 using API.Data;
 using API.Models;
 
@@ -7,6 +8,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize] // Protect all endpoints in this controller
     public class TaskController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
